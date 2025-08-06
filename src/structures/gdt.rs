@@ -265,7 +265,7 @@ impl<const MAX: usize> GlobalDescriptorTable<MAX> {
     /// Creates the descriptor pointer for this table. This pointer can only be
     /// safely used if the table is never modified or destroyed while in use.
     #[cfg(all(feature = "instructions", target_arch = "x86_64"))]
-    fn pointer(&self) -> super::DescriptorTablePointer {
+    pub fn pointer(&self) -> super::DescriptorTablePointer {
         super::DescriptorTablePointer {
             base: crate::VirtAddr::new(self.table.as_ptr() as u64),
             limit: self.limit(),
